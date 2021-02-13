@@ -1,72 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Barcode app</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ionic/core/css/ionic.bundle.css" />
-    <link rel="stylesheet" href="styles.css">
-</head>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@ionic/core/css/ionic.bundle.css"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
 
-<body class="body-content">
+  <body class="body-content">
     <ion-app>
-        <ion-header>
-            <ion-toolbar>
-                <ion-buttons slot="start">
-                    <ion-button>
-                        <ion-icon ios="ios-calendar" md="md-calendar"></ion-icon>
-                    </ion-button>
-                </ion-buttons>
-                <ion-title>Barcode app</ion-title>
-                <ion-buttons slot="end">
-                    <ion-button>
-                        <p style="margin-right: 2.5em;">Total: </p>
-                        <ion-icon ios="ios-book" md="md-book"></ion-icon>
-                    </ion-button>
-                </ion-buttons>
-            </ion-toolbar>
-        </ion-header>
-        <ion-content>
-            <ion-grid>
-                <ion-row>
-                    <ion-col>
-                        <ion-card>
-                            <ion-card-header>
-                                <ion-card-title>
-                                    Barcode app
-                                </ion-card-title>
-                                <ion-card-content>
-                                    <ion-item class="ion-margin-vertical">
-                                        <ion-label position="floating"> <!--mis dieses-->
-                                            Primer codigo
-                                        </ion-label>
-                                        <ion-input type="text" id="first_input"></ion-input>
-                                    </ion-item>
-                                    <ion-item>
-                                        <ion-label position="floating"> <!--mis dieses-->
-                                            Segundo codigo
-                                        </ion-label>
-                                        <ion-input type="text" id="second_input"></ion-input>
-                                    </ion-item>
-                                    <ion-item>
-                                        <ion-label position="floating"> <!--mis dieses-->
-                                            Tercer codigo
-                                        </ion-label>
-                                        <ion-input type="text" id="third_input"></ion-input>
-                                    </ion-item>
-                                </ion-card-content>
-                            </ion-card-header>
-                        </ion-card>
-                    </ion-col>
-                </ion-row>
-            </ion-grid>
-        </ion-content>
+      <ion-header>
+        <ion-toolbar color="primary">
+          <ion-buttons slot="start">
+            <ion-button>
+              <ion-icon ios="ios-calendar" md="md-calendar"></ion-icon>
+            </ion-button>
+          </ion-buttons>
+          <ion-title>Barcode app</ion-title>
+          <ion-buttons slot="end">
+            <ion-button>
+              <p style="margin-right: 2.5em">Total:</p>
+              <ion-icon ios="ios-book" md="md-book"></ion-icon>
+            </ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content>
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              <ion-card>
+                <ion-card-header color="secondary">
+                  <ion-card-title> Barcode app </ion-card-title>
+                  <ion-card-content>
+                    <ion-item class="ion-margin-vertical">
+                      <ion-label position="floating">
+                          Primer codigo
+                      </ion-label>
+                      <ion-input type="text" id="first_input"></ion-input>
+                    </ion-item>
+                    <ion-item class="ion-margin-vertical">
+                      <ion-label position="floating">
+                        Segundo codigo
+                      </ion-label>
+                      <ion-input type="text" id="second_input"></ion-input>
+                    </ion-item>
+                    <ion-item class="ion-margin-vertical">
+                      <ion-label position="floating">
+                          Tercer codigo
+                    </ion-label>
+                      <ion-input type="text" id="third_input"></ion-input>
+                    </ion-item>
+                    <ion-div id="checkText" color="danger" align="center">asdf</ion-div>
+                  </ion-card-content>
+                </ion-card-header>
+              </ion-card>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-content>
     </ion-app>
 
-<script src="funcionality.js"></script>
+    <script src="./funcionality.js"></script>
     <script type="module" src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.esm.js"></script>
     <script nomodule src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.js"></script>
-</body>
-
+  </body>
 </html>
