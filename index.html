@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gratitude</title>
+    <title>Barcode app</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ionic/core/css/ionic.bundle.css" />
     <link rel="stylesheet" href="styles.css">
 </head>
@@ -18,7 +18,7 @@
                         <ion-icon ios="ios-calendar" md="md-calendar"></ion-icon>
                     </ion-button>
                 </ion-buttons>
-                <ion-title>Gratitude</ion-title>
+                <ion-title>Barcode app</ion-title>
                 <ion-buttons slot="end">
                     <ion-button>
                         <p style="margin-right: 2.5em;">Total: </p>
@@ -34,20 +34,26 @@
                         <ion-card>
                             <ion-card-header>
                                 <ion-card-title>
-                                    New Product
+                                    Barcode app
                                 </ion-card-title>
                                 <ion-card-content>
                                     <ion-item class="ion-margin-vertical">
                                         <ion-label position="floating"> <!--mis dieses-->
-                                            Test
+                                            Primer codigo
                                         </ion-label>
-                                        <ion-input type="text"></ion-input>
+                                        <ion-input type="text" id="first_input"></ion-input>
                                     </ion-item>
                                     <ion-item>
                                         <ion-label position="floating"> <!--mis dieses-->
-                                            Test
+                                            Segundo codigo
                                         </ion-label>
-                                        <ion-input type="text"></ion-input>
+                                        <ion-input type="text" id="second_input"></ion-input>
+                                    </ion-item>
+                                    <ion-item>
+                                        <ion-label position="floating"> <!--mis dieses-->
+                                            Tercer codigo
+                                        </ion-label>
+                                        <ion-input type="text" id="third_input"></ion-input>
                                     </ion-item>
                                 </ion-card-content>
                             </ion-card-header>
@@ -58,7 +64,7 @@
         </ion-content>
     </ion-app>
 
-
+<script src="funcionality.js"></script>
     <script type="module" src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.esm.js"></script>
     <script nomodule src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.js"></script>
 </body>
