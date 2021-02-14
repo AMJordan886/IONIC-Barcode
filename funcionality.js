@@ -8,6 +8,9 @@
 //añadir funcionalidad para meter codigos a mano sin interval
 //quedaria darle color a los ion content
 //que genere un check verification nada mas en vez de tres?
+//en vez de setinterval estaria bien saber cual es la longitud de los codigos de barras
+//al darle al ok del alert que refreque la pagina
+//Se podria quitar el checking de error ya que hay un alert ya
 
 const d = document;
 let $first = d.querySelector(`#first_input`),
@@ -24,6 +27,17 @@ let $first = d.querySelector(`#first_input`),
     $checkText.appendChild(ionCard);
 }
 
+const presentAlert = () => {
+    const alert = d.createElement('ion-alert');
+    alert.header = 'Datos invalidos';
+    alert.subHeader = 'Por favor verifica los datos';
+    alert.message = 'Incorrección en los datos';
+    alert.buttons = ['Ok'];
+
+    d.body.appendChild(alert);
+    return alert.present();
+}
+
 
 
 function verifyContent() {
@@ -35,31 +49,30 @@ function verifyContent() {
 
 
     let firstInputInterval = setInterval(() => {
-        if ($first.value > "1") {
-            console.log($first.value)//...
+        if ($first.value > '1') {
             checkFirstInput();
         }
     }, 1000);
 
     let secondInputInterval = setInterval(() => {
-        if ($first.value > "1" && $first.value == $second.value) {
+        if ($first.value > '1' && $first.value == $second.value) {
             checkSecondInput();
-        } if ($second.value > "1" && $first.value != $second.value) {
+        } if ($second.value > '1' && $first.value != $second.value) {
             $checking = `Los codigos insertados no son iguales`;
             createVerification();
             clearInterval(secondInputInterval);
-            //alert("Los codigos insertados no son iguales");//...
+            presentAlert();
         }
     }, 1000);
 
     let thirdInputInterval = setInterval(() => {
-        if ($second.value > "1" && $second.value == $third.value) {
+        if ($second.value > '1' && $second.value == $third.value) {
             checkThirdInput();
-        } if ($third.value > "1" && $second.value != $third.value) {
+        } if ($third.value > '1' && $second.value != $third.value) {
             $checking = `Los codigos insertados no son iguales`;
             createVerification();
             clearInterval(thirdInputInterval);
-            //alert("Los codigos insertados no son iguales");//...
+            presentAlert();
         }
     }, 1000);
 
