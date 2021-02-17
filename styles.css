@@ -1,3 +1,5 @@
---ion-background-color{
-    background-color: #f00;
+:root{
+    --background-color: #f00;
 }
+
+

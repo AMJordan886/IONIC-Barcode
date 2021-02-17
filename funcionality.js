@@ -1,35 +1,59 @@
 // ERRORES A SOLUCIONAR:
-// NO DA TIEMPO A INGRESAR EL PRIMER VALOR, DEBERIA HABER MAS DELAY EN EL SETINTERVAL O QUE COJA UN EVENTO PORQUE SI ESTÁ OYENDO Y LE QUEDA MENOS DE UN SEGUNDO APENAS ENTRAN CARACTERES
 // UNA VEZ SE LIMPIA EL CLEAR INTERVAL SE JODIO. YA HAY QUE REFRESCAR TODO
-//añadir funcionalidad para meter codigos a mano sin interval
 //quedaria darle color a los ion content
 //que genere un check verification nada mas en vez de tres?
 //al darle al ok del alert que refresque la pagina
 //Se podria quitar el checking de error ya que hay un alert ya
-//Borrar los console.log
+//bordear los inputs en verde o rojo si no funcionan
+//boton comprobar codigos aunque sean dos y que ese boton envie los datos
 
 const d = document;
 let $first = d.querySelector(`#first_input`),
     $second = d.querySelector(`#second_input`),
     $third = d.querySelector(`#third_input`),
-    $checkText = d.querySelector(`#checkText`);
-let $checking, sumInterval = 0;
+    $checkText = d.querySelector(`#checkText`),//...
+    $checking,//...
+    sumInterval = 0;
+let firstLabel = d.querySelector(`#first_item`),
+    secondLabel = d.querySelector(`#second_item`),
+    thirdLabel = d.querySelector(`#third_item`);
 
-const createVerification = () => {
+/* const createVerification = () => {
     const ionCard = d.createElement('ion-card'),
         ionCardContent = d.createElement('ion-card-content');
     ionCardContent.textContent = $checking + ``;
     ionCard.appendChild(ionCardContent);
     $checkText.appendChild(ionCard);
-}
+} */
 
 const presentAlert = () => {
     const alert = d.createElement('ion-alert');
     alert.header = 'Los datos no coinciden';
-    //alert.subHeader = 'Por favor verifique los datos';
-    alert.message = 'Por favor verifique los datos';
-    //alert.message = 'Incorrección en los datos';
-    alert.buttons = ['Ok'];
+    alert.subHeader = 'Por favor verifique los datos';
+    alert.message = 'Pulse cancelar para introducir manualmente. \n Refrescar para recargar la aplicacion. \n Enviar para subir a la base de datos.';
+    //
+    //Meter un alert con tres botones        cancelar, refrescar y enviar
+    alert.buttons = [
+        {
+            text: 'Cancelar',
+            handler: () => {
+                checkFirstInput();
+                //aqui me tiene que dejar introducir a mano y que no me ponga en negro los inputs
+            }
+        },
+        {
+            text: 'Refrescar',
+            handler: () => {
+                location.reload();
+            }
+        },
+        {
+            text: 'Enviar',
+            handler: () => {
+                //POST AJAX
+            }
+        }
+    ];
     d.body.appendChild(alert);
     return alert.present();
 }
@@ -37,9 +61,14 @@ const presentAlert = () => {
 const inactivityAlert = () => {
     const alert = d.createElement('ion-alert');
     alert.header = 'Aplicación detenida';
-    //alert.subHeader = 'La aplicación se detiene tras dos horas de inactividad';
     alert.message = 'La aplicación se detiene tras dos horas de inactividad. Por favor, refresque para comenzar de nuevo.'; //PONER EN EL SEGUNDO IF DE FIRSTINPUTINTERVAL 7200 PARA QUE SEAN DOS HORAS
-    alert.buttons = ['Ok'];
+    alert.buttons = [
+        {
+            text: 'Ok',
+            handler: () => {
+                location.reload();
+            }
+        }];
     d.body.appendChild(alert);
     return alert.present();
 }
@@ -57,7 +86,7 @@ function verifyContent() {                          /***********FUNCION PRINCIPA
     let firstInputInterval = setInterval(() => {
         if ($first.value > '1') {
             checkFirstInput();
-        } if (sumInterval == 5/*7200 son dos horas*/) {//...
+        } if (sumInterval == 7200) {
             inactivityAlert();
             clearInterval(firstInputInterval);
         }
@@ -69,7 +98,8 @@ function verifyContent() {                          /***********FUNCION PRINCIPA
             checkSecondInput();
         } if ($second.value > '1' && $first.value != $second.value) {
             $checking = `Los codigos insertados no son iguales`;
-            createVerification();
+            secondLabel.style.boxShadow = "0px 0px 20px 1px #FF0000";
+            //createVerification();
             clearInterval(secondInputInterval);
             presentAlert();
         }
@@ -80,7 +110,8 @@ function verifyContent() {                          /***********FUNCION PRINCIPA
             checkThirdInput();
         } if ($third.value > '1' && $second.value != $third.value) {
             $checking = `Los codigos insertados no son iguales`;
-            createVerification();
+            thirdLabel.style.boxShadow = "0px 0px 20px 1px #FF0000";
+            //createVerification();
             clearInterval(thirdInputInterval);
             presentAlert();
         }
@@ -93,19 +124,27 @@ function verifyContent() {                          /***********FUNCION PRINCIPA
     function checkFirstInput() {
         clearInterval(firstInputInterval);
         setSecondFocus();
-        $checking = "Primer valor añadido";
-        createVerification();
+        //$checking = "Primer valor añadido";
+        //firstLabel.style.borderColor = '#00FF1F';
+        firstLabel.style.boxShadow = "0px 0px 20px 1px #00FF1F";
+        //createVerification();
     }
     function checkSecondInput() {
         clearInterval(secondInputInterval);
         setThirdFocus();
-        $checking = "Segundo valor añadido";
-        createVerification();
+        //$checking = "Segundo valor añadido";
+        //secondLabel.style.borderColor = '#00FF1F';
+        secondLabel.style.boxShadow = "0px 0px 20px 1px #00FF1F";
+        //createVerification();
     }
     function checkThirdInput() {
         clearInterval(thirdInputInterval);
-        $checking = "Los codigos introducidos coinciden";
-        createVerification();
+        //$checking = "Los codigos introducidos coinciden";
+        //thirdLabel.style.borderColor = '#00FF1F';
+        thirdLabel.style.boxShadow = "0px 0px 20px 1px #00FF1F";
+        //createVerification();
     }
 }
 verifyContent()
+
+//544654654654654
