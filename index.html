@@ -19,11 +19,11 @@
           </ion-buttons>-->
           <ion-title><img align="left" src="./assets/gaez.jfif" width="110px" style="display:inline-block" height="70px"></ion-title>
           <ion-buttons slot="end">
-            <ion-button>
-              <ion-icon name="reload-outline">asdf</ion-icon>
+            <ion-button id="reload">
+              <ion-icon name="reload-outline"></ion-icon>
             </ion-button>
-            <ion-button>
-              <ion-icon name="stats-chart-outline">asdf</ion-icon>
+            <ion-button id="stats-chart">
+              <ion-icon name="stats-chart-outline"></ion-icon>
             </ion-button>
           </ion-buttons>
         </ion-toolbar>
@@ -38,27 +38,29 @@
                   <ion-card-content>
                     <ion-item class="ion-margin-vertical" id="first_item" >
                       <ion-label position="floating">
-                          Primer codigo
+                          Primer código
                       </ion-label>
                       <ion-input id="first_input"></ion-input>
                     </ion-item>
                     <br>
                     <ion-item class="ion-margin-vertical" id="second_item">
                       <ion-label position="floating">
-                        Segundo codigo
+                        Segundo código
                       </ion-label>
                       <ion-input id="second_input"></ion-input>
                     </ion-item>
                     <br>
                     <ion-item class="ion-margin-vertical" id="third_item">
                       <ion-label position="floating">
-                          Tercer codigo
+                          Tercer código
                     </ion-label>
                       <ion-input id="third_input"></ion-input>
                     </ion-item>
                     <br>
-                    <ion-button color="medium" expand="block">¡Comprobar!</ion-button>
-                    <ion-div id="checkText" align="center"></ion-div>
+                    <br>
+                    <br>
+                    <ion-button color="medium" expand="block" id="checkButton">¡Enviar!</ion-button>
+                    <!--<ion-div id="checkText" align="center"></ion-div>-->
                   </ion-card-content>
                 </ion-card-header>
               </ion-card>
