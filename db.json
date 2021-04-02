@@ -1,0 +1,19 @@
+{
+  "database": [
+    {
+      "id": 1,
+      "data1": "asdf",
+      "data2": "Seiya",
+      "data3": "Pegaso"
+    },
+    {
+      "id": 2,
+      "data1": 2,
+      "data2": "Shiryu",
+      "data3": "Dragón"
+    },
+    {
+      "id": 3
+    }
+  ]
+}

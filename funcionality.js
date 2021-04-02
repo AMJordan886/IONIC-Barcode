@@ -3,6 +3,28 @@
 //MINIMO HAY QUE ENVIAR UNO
 //UNA OPCION SERIA QUE MANDASE EL ALERT SOLO AL DARLE A COMPROBAR
 
+const { default: axios } = require("axios");
+
+
+//AXIOS + ASYNC AWAIT
+
+import {
+    IonButton,
+    IonList,
+    IonItem
+  } from '@ionic/react';
+  
+  import axios from 'axios'; 
+
+
+// FALTA DEFINIR Y QUIZA LLAMAR AL SCRIPT EN EL INDEX
+// https://efficientcoder.net/send-http-get-request-for-consuming-a-rest-api-with-axios-in-ionic-app-based-on-typescript-and-react-hooks/
+//const  apiKEY  =  "<YOUR_API_KEY_HERE>";
+//const  endpoint  =  `https://newsapi.org/v2/top-headlines?sources=techcrunch&apiKey=${API_KEY}`;
+//In the end of document is the function
+
+
+
 const d = document;
 let $first = d.querySelector(`#first_input`),
     $second = d.querySelector(`#second_input`),
@@ -14,6 +36,7 @@ let $first = d.querySelector(`#first_input`),
     $reload = d.querySelector(`#reload`),
     $stadistics = d.querySelector('#stats-chart'),
     sumInterval = 0;
+    const $form = d.querySelector(".post-form");
 
 
 
@@ -21,7 +44,7 @@ const presentAlert = () => {
     const alert = d.createElement('ion-alert');
     //alert.cssClass = 'mycustomclass';
     alert.header = 'Los datos no coinciden\n';
-    alert.subHeader = 'Por favor, verifiquelos.\n';
+    alert.subHeader = 'Por favor, verifíquelos.\n';
     alert.message = `Pulse cancelar para introducir manualmente. <br> Refrescar para recargar la aplicacion. <br> Enviar para subir a la base de datos.`;
     alert.buttons = ['Cancelar',
         {
@@ -29,14 +52,15 @@ const presentAlert = () => {
             handler: () => {
                 location.reload();
             }
-        }/* ,
+        },
         {
             text: 'Enviar',
             handler: () => {
                 //BACKEND
-                location.reload();
+                axiosPost();
+                //location.reload();
             }
-        } */
+        }
     ];
     d.body.appendChild(alert);
     return alert.present();
@@ -57,7 +81,7 @@ const inactivityAlert = () => {
     return alert.present();
 }
 
-/* BOTON COMPROBAR */
+/* BOTON ENVIAR */
 $checkButton.addEventListener("click", (e) => {
     if ($first.value !== '' && $second.value !== '' 
     || $second.value !== '' && $third.value !== '' 
@@ -148,8 +172,53 @@ verifyContent()
 
 
 
+//Post axios
+/* const $form = d.querySelector(".form");
+const firstinputsend = d.querySelector("#first_input");
+
+d.addEventListener("submit", async (e) => {
+    if (e.target === firstinputsend) {
+        console.log("hola hola");
+    }
+}) */
 
 
-//Post -- Fetch + Async Await
 
 
+//Post -- AXIOS + Async Await
+    d.addEventListener("submit", async (e) => {
+        if (e.target === $form) {
+            
+        try {
+            let options = {
+                method: "POST",
+                headers: { "Content-type": "application/json; charset=utf-8" },
+                data: JSON.stringify({
+                    first: $first.value,
+                    second: $second.value,
+                    third: $third.value,
+                }),
+            };
+            let res = await axios("YOUR ENDPOINT", options),
+                json = await res.data;
+
+                console.log("hooasdf")
+            }            
+    
+        catch (err){
+            console.log(`Error de envío: `, err.response);
+            let message = err.response.statusText || "Ocurrió un error";
+            console.log(message);
+        }
+    
+        finally {
+           console.log("Function Post enabled!") 
+        }
+
+
+
+
+
+        }
+    })
+//axiosPost();
