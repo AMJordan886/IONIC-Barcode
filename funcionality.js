@@ -144,3 +144,12 @@ function verifyContent() {
     }
 }
 verifyContent()
+
+
+
+
+
+
+//Post -- Fetch + Async Await
+
+
