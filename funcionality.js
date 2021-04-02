@@ -1,23 +1,22 @@
 // ERRORES A SOLUCIONAR:
 //quedaria darle color a los ion content            HABRIA QUE MEJORARLO
-//MINIMO HAY QUE ENVIAR UNO
+//MINIMO HAY QUE ENVIAR UNO, pues envia 0 jjajaj jaqe mate
 //UNA OPCION SERIA QUE MANDASE EL ALERT SOLO AL DARLE A COMPROBAR
+// SE PUEDEN ENVIAR LOS CAMPOS VACIOS
 
-const { default: axios } = require("axios");
 
 
 //AXIOS + ASYNC AWAIT
-
+/* 
+const { default: axios } = require("axios");
 import {
     IonButton,
     IonList,
     IonItem
-  } from '@ionic/react';
-  
+  } from '@ionic/react';  
   import axios from 'axios'; 
+ */
 
-
-// FALTA DEFINIR Y QUIZA LLAMAR AL SCRIPT EN EL INDEX
 // https://efficientcoder.net/send-http-get-request-for-consuming-a-rest-api-with-axios-in-ionic-app-based-on-typescript-and-react-hooks/
 //const  apiKEY  =  "<YOUR_API_KEY_HERE>";
 //const  endpoint  =  `https://newsapi.org/v2/top-headlines?sources=techcrunch&apiKey=${API_KEY}`;
@@ -36,8 +35,6 @@ let $first = d.querySelector(`#first_input`),
     $reload = d.querySelector(`#reload`),
     $stadistics = d.querySelector('#stats-chart'),
     sumInterval = 0;
-    const $form = d.querySelector(".post-form");
-
 
 
 const presentAlert = () => {
@@ -55,13 +52,32 @@ const presentAlert = () => {
         },
         {
             text: 'Enviar',
-            handler: () => {
-                //BACKEND
-                axiosPost();
-                //location.reload();
+            handler: async (e) => {
+                //POST
+                try {
+                    let options = {
+                        method: "POST",
+                        headers: { "Content-type": "application/json; charset=utf-8" },
+                        data: JSON.stringify({
+                            first: $first.value,
+                            second: $second.value,
+                            third: $third.value,
+                        }),
+                    };
+                    let res = await axios("http://localhost:5555/database", options),
+                        json = await res.data;
+                        console.log("enviando...")//...
+                    }            
+                catch (err){
+                    console.log(`Error de envío: `, err.response);
+                    let message = err.response.statusText || "Ocurrió un error";
+                    console.log(message);
+                }
+                location.reload();
             }
         }
     ];
+
     d.body.appendChild(alert);
     return alert.present();
 }
@@ -87,7 +103,31 @@ $checkButton.addEventListener("click", (e) => {
     || $second.value !== '' && $third.value !== '' 
     || $first.value  !== '' && $third.value !== '' 
     || $second.value !== '' && $first.value !== '') {
-        //BACKEND
+        //POST
+            const send = async (e) => {
+                //POST
+                try {
+                    let options = {
+                        method: "POST",
+                        headers: { "Content-type": "application/json; charset=utf-8" },
+                        data: JSON.stringify({
+                            first: $first.value,
+                            second: $second.value,
+                            third: $third.value,
+                        }),
+                    };
+                    let res = await axios("http://localhost:5555/database", options),
+                        json = await res.data;
+                        console.log("enviando...")//...
+                    }            
+                catch (err){
+                    console.log(`Error de envío: `, err.response);
+                    let message = err.response.statusText || "Ocurrió un error";
+                    console.log(message);
+                }
+                location.reload();//...
+            }
+            send();
         console.log('enviando...', $first.value, $second.value, $third.value);
     } else {
         presentAlert();
@@ -172,6 +212,45 @@ verifyContent()
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //Post axios
 /* const $form = d.querySelector(".form");
 const firstinputsend = d.querySelector("#first_input");
@@ -184,11 +263,9 @@ d.addEventListener("submit", async (e) => {
 
 
 
-
 //Post -- AXIOS + Async Await
-    d.addEventListener("submit", async (e) => {
+    /* d.addEventListener("submit", async (e) => {
         if (e.target === $form) {
-            
         try {
             let options = {
                 method: "POST",
@@ -204,21 +281,14 @@ d.addEventListener("submit", async (e) => {
 
                 console.log("hooasdf")
             }            
-    
         catch (err){
             console.log(`Error de envío: `, err.response);
             let message = err.response.statusText || "Ocurrió un error";
             console.log(message);
         }
-    
         finally {
            console.log("Function Post enabled!") 
         }
-
-
-
-
-
-        }
-    })
+    }
+}) */
 //axiosPost();
